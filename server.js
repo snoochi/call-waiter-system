@@ -19,9 +19,9 @@ app.get("/call/:id", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
-    <head><title>Table ${id}</title></head>
+    <head><title>Sunbed ${id}</title></head>
     <body style="font-family:sans-serif;text-align:center;padding-top:50px;">
-      <h2>You are at Table <b>#${id}</b></h2>
+      <h2>You are at Sunbed <b>#${id}</b></h2>
       <button onclick="callWaiter()" style="font-size:24px;padding:15px 30px;">Call Waiter</button>
 
       <script>
