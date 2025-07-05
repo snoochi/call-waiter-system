@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Waiter Calls</title>
+  <style>
+    body { font-family: sans-serif; padding: 30px; }
+    h1 { font-size: 24px; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 5px 0; font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Incoming Calls</h1>
+  <ul id="log"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const log = document.getElementById('log');
+    const socket = io();
+
+    function addCall({ id, time }) {
+      const li = document.createElement('li');
+      li.textContent = `🛎️ Table ${id} — ${time}`;
+      log.prepend(li);
+    }
+
+    fetch('/api/history')
+      .then(res => res.json())
+      .then(data => data.forEach(addCall));
+
+    socket.on('new_call', addCall);
+  </script>
+</body>
+</html>
